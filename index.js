@@ -25,7 +25,13 @@ app.use('/auth', authRouter);
 app.use('/user', userRouter);
 app.use('/blogs', blogRouter);
 
-/* TODO: Add 404 route */
+// 404
+app.use((req, res, next) => {
+    res.status(404)
+    res.json({
+      message: 'Route not found on the server'
+    });
+})
 
 // Handle errors.
 app.use((err, req, res, next) => {
@@ -35,6 +41,10 @@ app.use((err, req, res, next) => {
   next();
 });
 
-app.listen(PORT, () => {
+// Comment out before running test script
+/* app.listen(PORT, () => {
   console.log('Server listening on port, ', PORT);
-});
+});*/
+
+// For testing
+module.exports = app;

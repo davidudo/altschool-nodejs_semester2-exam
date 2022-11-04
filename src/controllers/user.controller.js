@@ -1,18 +1,31 @@
-const { UserModel } = require('../models/user.model');
+const bcrypt = require('bcrypt');
+const UserModel = require('../models/user.model');
 
 async function updateUser(req, res, next) {
   try {
     const { id } = req.params;
-    const updateDetails = req.body;
-  
-    const user = await userModel.findOneAndUpdate(id, updateDetails, {
-      new: true,
-    });
 
-  return res.json({
-    status: true,
-    user,
-  });
+    if (id) {
+      const updateDetails = req.body;
+
+      const userId = { _id: id };
+      
+      if (updateDetails.password) {
+        let { password } = updateDetails;
+        
+        const hash = await bcrypt.hash(password, 10);
+        updateDetails.password = hash;
+      }
+  
+      const user = await UserModel.findOneAndUpdate(userId, updateDetails, {
+        new: true,
+      });
+  
+      return res.json({
+        status: true,
+        user,
+      });
+    }
   } catch(error) {
     next(error);
   }
@@ -21,13 +34,15 @@ async function updateUser(req, res, next) {
 async function deleteUser(req, res, next) {
   try {
     const { id } = req.params;
-
-    const user = await userModel.deleteOne({ _id: id });
-  
-    return res.json({
-      status: true,
-      user,
-    });
+    
+    if (id ) {
+      const user = await UserModel.deleteOne({ _id: id });
+    
+      return res.json({
+        status: true,
+        user,
+      });
+    }
   } catch(error) {
     next(error);
   }

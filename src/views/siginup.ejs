@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Altschool Blog | Sign Up</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <form action="/signup" method="post">
+    <!-- First Name Input-->
+    <label>First Name</label>
+    <input 
+      type="text" 
+      name="firstname" 
+      placeholder="First Name" 
+      required 
+    />
+    
+    <!-- Last Name Input-->
+    <label>Last Name</label>
+    <input 
+      type="text" 
+      name="lastname" 
+      placeholder="Last Name" 
+      required 
+    />
+    
+    <!-- Email Input-->
+    <label>Email</label>
+    <input 
+      type="email" 
+      name="email" 
+      placeholder="Email" 
+      required 
+    />
+    
+    <!-- Password Input -->
+    <label>Password</label>
+    <input
+      type="password"
+      name="password"
+      placeholder="Password"
+      required
+    />
+    
+    <!-- Submit Button -->
+    <button type="submit">Signup</button> 
+    
+    <a href="/login">Login</a>
+  </form>
+  
+  <script src="main.js"></script>
+</body>
+</html>

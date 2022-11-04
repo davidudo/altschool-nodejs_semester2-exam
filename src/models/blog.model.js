@@ -11,7 +11,7 @@ const BlogSchema = new Schema({
   body: { type: String, required: true },
   state: { type: String, enum: ['draft', 'published'], default: 'draft' },
   readCount: { type: Number, default: 0 },
-  readTime: { type: Number, default: 0 },
+  readTime: { type: Number, default: 0 }, // Minutes
   tags: { type: Array },
   createdAt: { type: Date },
   updatedAt: { type: Date },

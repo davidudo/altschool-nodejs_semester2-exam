@@ -30,12 +30,20 @@ async function getBlogById(req, res, next) {
       }
       
       /* TODO: Update read count */
+      let { readCount } = blog;
+      readCount = readCount + 1;
+      
+      const updateDetails = { readCount };
+      
+      const updatedBlog = await BlogModel.findOneAndUpdate(id, updateDetails, {
+        new: true,
+      });
       
       /* TODO: Add user info to payload */
       
       return res.status(200).json({
         status: true,
-        blog,
+        updatedBlog,
       });
     }
   } catch (error) {
