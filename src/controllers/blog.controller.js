@@ -1,6 +1,8 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable consistent-return */
 const moment = require('moment');
 const BlogModel = require('../models/blog.model');
+const UserModel = require('../models/user.model');
 const readTime = require('../utils/readtime.utils');
 
 async function getAllBlogs(req, res, next) {
@@ -98,13 +100,23 @@ async function getBlogById(req, res, next) {
 
       const blogData = await BlogModel.findOneAndUpdate(id, updateDetails, {
         new: true,
+        runValidators: true,
       });
 
-      /* TODO: Add user info to payload */
+      const { authorId } = blog;
+
+      const author = await UserModel.findById(authorId);
+      const authorInfo = {};
+
+      authorInfo.id = author._id;
+      authorInfo.firstName = author.firstName;
+      authorInfo.lastName = author.lastName;
+      authorInfo.email = author.email;
 
       return res.status(200).json({
         status: true,
         blogData,
+        authorInfo,
       });
     }
   } catch (error) {
@@ -122,10 +134,10 @@ async function addBlog(req, res, next) {
       body.createdAt = moment().toDate();
       body.updatedAt = moment().toDate();
       body.readTime = readTime(text);
+      body.author = `${req.user.firstName} ${req.user.lastName}`;
+      body.authorId = req.user._id;
 
       const blogData = await BlogModel.create(body);
-
-      /* TODO: Add the id of the user that adds the blog */
 
       return res.status(201).json({
         status: true,

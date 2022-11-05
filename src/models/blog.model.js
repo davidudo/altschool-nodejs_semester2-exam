@@ -8,6 +8,7 @@ const BlogSchema = new Schema({
   title: { type: String, unique: true, required: true },
   description: { type: String },
   author: { type: String, required: true },
+  authorId: { type: ObjectId, required: true },
   body: { type: String, required: true },
   state: { type: String, enum: ['draft', 'published'], default: 'draft' },
   readCount: { type: Number, default: 0 },
