@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 const bcrypt = require('bcrypt');
 const UserModel = require('../models/user.model');
 
@@ -9,24 +10,24 @@ async function updateUser(req, res, next) {
       const updateDetails = req.body;
 
       const userId = { _id: id };
-      
+
       if (updateDetails.password) {
-        let { password } = updateDetails;
-        
+        const { password } = updateDetails;
+
         const hash = await bcrypt.hash(password, 10);
         updateDetails.password = hash;
       }
-  
+
       const user = await UserModel.findOneAndUpdate(userId, updateDetails, {
         new: true,
       });
-  
+
       return res.json({
         status: true,
         user,
       });
     }
-  } catch(error) {
+  } catch (error) {
     next(error);
   }
 }
@@ -34,21 +35,21 @@ async function updateUser(req, res, next) {
 async function deleteUser(req, res, next) {
   try {
     const { id } = req.params;
-    
-    if (id ) {
+
+    if (id) {
       const user = await UserModel.deleteOne({ _id: id });
-    
+
       return res.json({
         status: true,
         user,
       });
     }
-  } catch(error) {
+  } catch (error) {
     next(error);
   }
 }
 
 module.exports = {
   updateUser,
-  deleteUser
-}
+  deleteUser,
+};

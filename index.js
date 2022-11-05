@@ -7,8 +7,8 @@ const blogRouter = require('./src/routes/blog.route');
 require('dotenv').config();
 require('./src/middlewares/auth.middleware');
 
-const HOST = process.env.HOST;
-const PORT = process.env.PORT;
+const { HOST } = process.env;
+const { PORT } = process.env;
 
 const app = express();
 
@@ -27,11 +27,12 @@ app.use('/blogs', blogRouter);
 
 // 404
 app.use((req, res, next) => {
-    res.status(404)
-    res.json({
-      message: 'Route not found on the server'
-    });
-})
+  res.status(404);
+  res.json({
+    message: 'Route not found on the server',
+  });
+  next();
+});
 
 // Handle errors.
 app.use((err, req, res, next) => {
@@ -41,10 +42,9 @@ app.use((err, req, res, next) => {
   next();
 });
 
-// Comment out before running test script
 /* app.listen(PORT, () => {
   console.log('Server listening on port, ', PORT);
-});*/
+}); */
 
 // For testing
 module.exports = app;
