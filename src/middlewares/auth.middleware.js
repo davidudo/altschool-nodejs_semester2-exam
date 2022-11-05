@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 const passport = require('passport');
 const moment = require('moment');
 const LocalStrategy = require('passport-local').Strategy;

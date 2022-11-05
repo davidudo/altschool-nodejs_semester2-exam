@@ -1,3 +1,5 @@
+/* eslint-disable consistent-return */
+/* eslint-disable no-underscore-dangle */
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 
@@ -34,20 +36,21 @@ async function login(req, res, next) {
 
           const body = {
             _id: user._id,
+            firstName: user.firstName,
+            lastName: user.lastName,
             email: user.email,
           };
 
           const token = jwt.sign(
-            {
-              user: body,
-            },
-            process.env.JWT_SECRET
+            { user: body },
+            process.env.JWT_SECRET,
+            { expiresIn: '24h' /* expires in 24 hours */ },
           );
 
           return res.json({
             token,
           });
-        }
+        },
       );
     } catch (error) {
       return next(error);

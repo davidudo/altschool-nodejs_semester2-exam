@@ -23,7 +23,7 @@ connectToMongoDB();
 // Routes
 app.use('/auth', authRouter);
 app.use('/user', userRouter);
-app.use('/blogs', blogRouter);
+app.use('/blog', blogRouter);
 
 // 404
 app.use((req, res, next) => {
