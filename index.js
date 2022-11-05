@@ -46,5 +46,4 @@ app.use((err, req, res, next) => {
   console.log('Server listening on port, ', PORT);
 }); */
 
-// For testing
 module.exports = app;

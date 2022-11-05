@@ -22,7 +22,7 @@ async function updateUser(req, res, next) {
         new: true,
       });
 
-      return res.json({
+      return res.status(201).json({
         status: true,
         user,
       });

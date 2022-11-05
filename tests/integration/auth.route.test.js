@@ -35,7 +35,7 @@ describe('Auth: Signup', () => {
       .send({
         firstName: 'Tobie',
         lastName: 'Augustina',
-        email: 'tobi@mail.com',
+        email: 'tobi@gmail.com',
         password: '123456',
       });
 
@@ -44,7 +44,7 @@ describe('Auth: Signup', () => {
     expect(response.body).toHaveProperty('user');
     expect(response.body.user).toHaveProperty('firstName', 'Tobie');
     expect(response.body.user).toHaveProperty('lastName', 'Augustina');
-    expect(response.body.user).toHaveProperty('email', 'tobi@mail.com');
+    expect(response.body.user).toHaveProperty('email', 'tobi@gmail.com');
   });
 });
 
