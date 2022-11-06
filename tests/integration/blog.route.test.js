@@ -14,7 +14,7 @@ const {
 require('dotenv').config();
 
 beforeEach(async () => {
-  await mongoose.connect(process.env.MONGODB_URI);
+  await mongoose.connect(process.env.MONGODB_TEST_URI);
 });
 
 afterEach(async () => {

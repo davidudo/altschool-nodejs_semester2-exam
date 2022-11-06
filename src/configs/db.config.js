@@ -1,7 +1,13 @@
 const moogoose = require('mongoose');
 require('dotenv').config();
 
-const { MONGODB_URI } = process.env;
+const ACTION = '';
+
+let { MONGODB_URI } = process.env;
+
+if (ACTION === 'test') {
+  MONGODB_URI = process.env.MONGODB_TEST_URI;
+}
 
 // Connect to mongodb
 function connectToMongoDB() {

@@ -10,7 +10,7 @@ This is an API for a blogging app. This was built as my NodeJS second semester e
 2. Users can login using JWT
 3. Users can update their details
 4. Users can delete their account
-5. Users can get blogs
+5. Users can get blogs and query through them
 6. Users can create a blog
 7. Users can delete a blog
 8. Users can update a blog
@@ -22,7 +22,7 @@ This is an API for a blogging app. This was built as my NodeJS second semester e
 - Install NodeJS, Mongodb, and Python
   > Libraries like `bcrypt` need Python to function
 - Pull this repo
-- Update `.env` with `example.env`
+- Create a `.env` and update it with `example.env` content
 - To start the app:
   - Uncomment all `console.log` in `/src/configs/db.config.js` and `index.js` file
   - If you are using your local Mongodb server, don't forget to start it
@@ -39,6 +39,19 @@ This is an API for a blogging app. This was built as my NodeJS second semester e
         console.log('Server listening on port, ', PORT);
     });
     ```
+  - Go to `/src/configs/db.config.js` and change
+
+    ```javascript
+    const ACTION = '';
+    ```
+
+    To
+
+    ```javascript
+    const ACTION = 'test';
+    ```
+
+  - Start your local MongoDB server
   - Then run
   
     ```bash
