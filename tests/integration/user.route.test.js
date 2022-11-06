@@ -5,16 +5,12 @@ const mongoose = require('mongoose');
 const request = require('supertest');
 const app = require('../../index');
 const UserModel = require('../../src/models/user.model');
+const { 
+  authoriseUser, 
+  removeAllCollections,
+} = require('../utils/test.utils');
 
 require('dotenv').config();
-
-async function removeAllCollections() {
-  const collections = Object.keys(mongoose.connection.collections);
-  for (const collectionName of collections) {
-    const collection = mongoose.connection.collections[collectionName];
-    await collection.deleteMany();
-  }
-}
 
 beforeEach(async () => {
   await mongoose.connect(process.env.MONGODB_URI);
@@ -30,19 +26,17 @@ afterEach(async () => {
 
 describe('User: Update', () => {
   it('should update a user\'s details', async () => {
-    const user = await UserModel.create({
-      firstName: 'Obinna',
-      lastName: 'Akobundu',
-      email: 'obai@gmail.com',
-      password: '123456',
-    });
-
-    const userId = user._id;
-
+    const user = await authoriseUser();
+      
+    const headerObj = {
+      'content-type': 'application/json',
+      'authorization': `Bearer ${user.token}`,
+    }
+    
     // Update user
     const response = await request(app)
-      .put(`/user/${userId}`)
-      .set('content-type', 'application/json')
+      .put(`/user/${user.userId}`)
+      .set(headerObj)
       .send({
         lastName: 'Victor',
         email: 'obinnavictor@gmail.com'
@@ -59,17 +53,17 @@ describe('User: Update', () => {
 describe('User: Delete', () => {
   it('should delete a user from database', async () => {
     // Create user in db
-    const user = await UserModel.create({
-      firstName: 'Obinna',
-      lastName: 'Akobundu',
-      email: 'obai@gmail.com',
-      password: '123456',
-    });
-
-    const userId = user._id;
+    const user = await authoriseUser();
+    
+    const headerObj = {
+      'content-type': 'application/json',
+      'authorization': `Bearer ${user.token}`,
+    }
 
     // Delete user
-    const response = await request(app).delete(`/user/${userId}`);
+    const response = await request(app)
+      .delete(`/user/${user.userId}`)
+      .set(headerObj);
 
     expect(response.status).toBe(200);
     expect(response.body).toHaveProperty('status');

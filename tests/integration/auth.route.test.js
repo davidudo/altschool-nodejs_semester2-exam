@@ -4,16 +4,9 @@ const mongoose = require('mongoose');
 const request = require('supertest');
 const app = require('../../index');
 const UserModel = require('../../src/models/user.model');
+const { removeAllCollections } = require('../utils/test.utils');
 
 require('dotenv').config();
-
-async function removeAllCollections() {
-  const collections = Object.keys(mongoose.connection.collections);
-  for (const collectionName of collections) {
-    const collection = mongoose.connection.collections[collectionName];
-    await collection.deleteMany();
-  }
-}
 
 beforeEach(async () => {
   await mongoose.connect(process.env.MONGODB_URI);
