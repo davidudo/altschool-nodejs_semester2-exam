@@ -346,7 +346,7 @@ This is an API for a blogging app. This was built as my NodeJS second semester e
 ### Update Blog
 
 - Route: /orders
-- Method: GET
+- Method: PUT
 - Header:
     - Authorization: Bearer {token}
 
@@ -382,7 +382,7 @@ This is an API for a blogging app. This was built as my NodeJS second semester e
 ### Delete Blog
 
 - Route: /orders
-- Method: GET
+- Method: DELETE
 - Header:
     - Authorization: Bearer {token}
 
