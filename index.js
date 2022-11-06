@@ -1,5 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
+const cors = require('cors');
 const connectToMongoDB = require('./src/configs/db.config');
 const authRouter = require('./src/routes/auth.route');
 const userRouter = require('./src/routes/user.route');
@@ -12,6 +13,12 @@ const { PORT } = process.env;
 
 const app = express();
 
+const corsOptions = {
+   origin : '*',
+}
+  
+app.use(cors(corsOptions));
+
 // Middlewares
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -21,6 +28,10 @@ app.use(morgan('tiny'));
 connectToMongoDB();
 
 // Routes
+app.get('/', (req, res) =>  {
+  res.send('Welcome to Altschool Blog API!');
+});
+
 app.use('/auth', authRouter);
 app.use('/user', userRouter);
 app.use('/blog', blogRouter);
@@ -42,8 +53,8 @@ app.use((err, req, res, next) => {
   next();
 });
 
-/* app.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log('Server listening on port, ', PORT);
-}); */
+});
 
 module.exports = app;
