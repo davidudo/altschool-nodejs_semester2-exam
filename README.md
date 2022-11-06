@@ -35,19 +35,22 @@ This is an API for a blogging app. This was built as my NodeJS second semester e
   - Comment out this code in `index.js` file
   
     ```javascript
+    /* index.js file */
     app.listen(PORT, () => {
         console.log('Server listening on port, ', PORT);
     });
     ```
-  - Go to `/src/configs/db.config.js` and change
+  - Go to `./src/configs/db.config.js` and change
 
     ```javascript
+    /* ./src/configs/db.config.js file */
     const ACTION = '';
     ```
 
     To
 
     ```javascript
+    /* ./src/configs/db.config.js file */
     const ACTION = 'test';
     ```
 
@@ -56,6 +59,18 @@ This is an API for a blogging app. This was built as my NodeJS second semester e
   
     ```bash
     npm run test
+    ```
+- To run database seeding script
+  - You can choose to go to the `db.seed.js` file and change the `uri`
+
+    ```javascript
+    /* db.seed.js file */
+    const MONGODB_URI = 'mongodb://localhost:27017/blogging_api';
+    ```
+  
+  - Then run
+    ```bash
+    npm run seed:db
     ```
 ---
 
