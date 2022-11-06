@@ -47,7 +47,7 @@ This is an API for a blogging app. This was built as my NodeJS second semester e
 ---
 
 ## Base URL
-- [https://www.myapi_hostsite.com]()
+- [https://altschoolblogapp.herokuapp.com](https://altschoolblogapp.herokuapp.com/)
 
 ---
 
