@@ -4,6 +4,7 @@
   "description": "Blogging REST API",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "cross-env NODE_ENV=test jest --detectOpenHandles",
     "start:dev": "npx nodemon index.js"
   },
