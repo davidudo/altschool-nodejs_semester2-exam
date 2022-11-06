@@ -8,15 +8,12 @@ const blogRouter = require('./src/routes/blog.route');
 require('dotenv').config();
 require('./src/middlewares/auth.middleware');
 
-const { HOST } = process.env;
 const { PORT } = process.env;
 
 const app = express();
 
-const corsOptions = {
-   origin : '*',
-}
-  
+const corsOptions = { origin: '*' };
+
 app.use(cors(corsOptions));
 
 // Middlewares
@@ -28,7 +25,7 @@ app.use(morgan('tiny'));
 connectToMongoDB();
 
 // Routes
-app.get('/', (req, res) =>  {
+app.get('/', (req, res) => {
   res.send('Welcome to Altschool Blog API!');
 });
 

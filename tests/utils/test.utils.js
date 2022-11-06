@@ -1,3 +1,6 @@
+/* eslint-disable no-await-in-loop */
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable no-underscore-dangle */
 const mongoose = require('mongoose');
 const request = require('supertest');
 const app = require('../../index');
@@ -22,24 +25,24 @@ async function authoriseUser() {
       email: 'obai@gmail.com',
       password: '123456',
     });
-  
-  const token = tokenObj._body.token;
+
+  const { token } = tokenObj._body;
   const userId = user._body.user._id;
-  
+
   return {
     token,
     userId,
-  }
+  };
 }
 
 async function createBlog() {
   const user = await authoriseUser();
-  
+
   const headerObj = {
-      'content-type': 'application/json',
-      'authorization': `Bearer ${user.token}`,
-    }
-    
+    'content-type': 'application/json',
+    authorization: `Bearer ${user.token}`,
+  };
+
   const blog = await request(app)
     .post('/blog')
     .set(headerObj)
@@ -47,13 +50,13 @@ async function createBlog() {
       title: 'JavaScript Tutorial',
       description: 'JavaScript Basics for Beginners',
       body: 'This is the content of the blog.',
-      tags: ['JavaScript', 'Beginners']
+      tags: ['JavaScript', 'Beginners'],
     });
-  
-  return { 
+
+  return {
     blog,
     user,
-  }
+  };
 }
 
 async function removeAllCollections() {
@@ -64,9 +67,8 @@ async function removeAllCollections() {
   }
 }
 
-
-module.exports = { 
+module.exports = {
   authoriseUser,
   createBlog,
   removeAllCollections,
-}
+};
