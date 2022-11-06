@@ -19,6 +19,7 @@ async function getAllBlogs(req, res, next) {
         pageNumber,
         state,
         author,
+        authorId,
         title,
         tag,
         orderBy,
@@ -34,6 +35,10 @@ async function getAllBlogs(req, res, next) {
       }
 
       // Add find parameters to findParams
+      if (authorId) {
+        findParams.email = authorId;
+      }
+
       if (state) {
         findParams.state = { $regex: state, $options: 'i' };
       }

@@ -72,6 +72,7 @@ This is an API for a blogging app. This was built as my NodeJS second semester e
 |  title       |  string    |  unique, required      |
 |  description | string     |  optional              |
 |  author      |  string    |  required              |
+|  authorId    |  objectid  |  required              |
 |  body        | string     |  required              |
 |  state       |  string    |  required, enum: ['draft', 'published'], default: 'draft' |
 |  readCount   |  number    |  required, default: 0 |
@@ -140,11 +141,13 @@ This is an API for a blogging app. This was built as my NodeJS second semester e
         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYzNjVlMzI5MDgzN2UxZWMwMmU1ODJhYyIsImVtYWlsIjoidWRvZGF2aWQ0Ni51ZEBnbWFpbC5jb20ifSwiaWF0IjoxNjY3NjIxODQ4fQ.D_-9BccIKmv3w8ExEMMxC7_dDDxO7HNRXgyEesyXf-c"
     }
     ```
-
+---
 ### Update User
 
 - Route: /user/:id
 - Method: PUT
+- Header
+  - Authorization: Bearer {token}
 - Body: 
   
     ```json
@@ -173,11 +176,13 @@ This is an API for a blogging app. This was built as my NodeJS second semester e
         }
     }
     ```
-
+---
 ### Delete User
 
 - Route: /user/:id
 - Method: DELETE
+- Header
+  - Authorization: Bearer {token}
   
 - Responses
 
@@ -196,123 +201,203 @@ This is an API for a blogging app. This was built as my NodeJS second semester e
 ---
 ### Create Blog
 
-- Route: /orders
+- Route: /blog
 - Method: POST
 - Header
-    - Authorization: Bearer {token}
+  - Authorization: Bearer {token
 - Body: 
-```
-{
-    items: [{ name: 'chicken pizza', price: 900, size: 'm', quantity: 1}]
-}
-```
+    ```json
+    {
+        "title": "JavaScript Tutorial",
+        "description": "JavaScript Basics for Beginners",
+        "body": "This is the content of the blog.",
+        "tags": ["JavaScript", "Beginners"]
+    }
+    ```
 
 - Responses
 
-Success
-```
-{
-    state: 1,
-    total_price: 900,
-    created_at: Mon Oct 31 2022 08:35:00 GMT+0100,
-    items: [{ name: 'chicken pizza', price: 900, size: 'm', quantity: 1}]
-}
-```
+    Success
+
+    ```json
+    {
+        "status": true,
+        "blogData": {
+          "title": "JavaScript Tutorial",
+          "description": "JavaScript Basics for Beginners",
+          "author": "David Udo",
+          "authorId": "636732cb74766d2d63f2dde2",
+          "body": "This is the content of the blog.",
+          "state": "draft",
+          "readCount": 0,
+          "readTime": 1,
+          "tags": [
+            "JavaScript",
+            "Beginners"
+          ],
+          "createdAt": "2022-11-06T04:19:08.945Z",
+          "updatedAt": "2022-11-06T04:19:08.946Z",
+          "_id": "636735bc74766d2d63f2ddef",
+          "__v": 0
+      }
+    }
+    ```
 ---
 ### Get Blog
 
-- Route: /orders/:id
+- Route: /blog/:id
 - Method: GET
-- Header
-    - Authorization: Bearer {token}
 - Responses
 
-Success
-```
-{
-    state: 1,
-    total_price: 900,
-    created_at: Mon Oct 31 2022 08:35:00 GMT+0100,
-    items: [{ name: 'chicken pizza', price: 900, size: 'm', quantity: 1}]
-}
-```
----
+    Success
 
+    ```json
+    {
+        "status": true,
+        "blogData": {
+          "_id": "636735bc74766d2d63f2ddef",
+          "title": "JavaScript Tutorial",
+          "description": "JavaScript Basics for Beginners",
+          "author": "David Udo",
+          "authorId": "636732cb74766d2d63f2dde2",
+          "body": "This is the content of the blog.",
+          "state": "draft",
+          "readCount": 1,
+          "readTime": 1,
+          "tags": [
+            "JavaScript",
+            "Beginners"
+          ],
+          "createdAt": "2022-11-06T04:19:08.945Z",
+          "updatedAt": "2022-11-06T04:19:08.946Z",
+          "__v": 0
+        },
+        "authorInfo": {
+          "id": "636732cb74766d2d63f2dde2",
+          "firstName": "David",
+          "lastName": "Udo",
+          "email": "udodavid46.ud@gmail.com"
+        }
+    }
+    ```
+---
 ### Get Blogs
 
-- Route: /orders
+- Route: /blog
 - Method: GET
-- Header:
-    - Authorization: Bearer {token}
 - Query params: 
-    - page (default: 1)
-    - per_page (default: 10)
-    - order_by (default: created_at)
+    - pageNumber (default: 0)
+    - state (options: draft | published)
+    - author
+    - authorId
+    - title
+    - tag (accepts only one tag e.g nodejs)
+    - orderBy (e.g createdAt,updatedAt,readTime,readCount)
     - order (options: asc | desc, default: desc)
-    - state
-    - created_at
+
 - Responses
 
-Success
-```
-{
-    state: 1,
-    total_price: 900,
-    created_at: Mon Oct 31 2022 08:35:00 GMT+0100,
-    items: [{ name: 'chicken pizza', price: 900, size: 'm', quantity: 1}]
-}
-```
-
+    Success
+    ```json
+    {
+        "status": true,
+        "blogs": [
+          {
+            "_id": "63673ec91963893bbe5cbe89",
+            "title": "JavaScript Tutorial",
+            "description": "JavaScript Basics for Beginners",
+            "author": "David Udo",
+            "authorId": "636732cb74766d2d63f2dde2",
+            "body": "This is the content of the blog.",
+            "state": "draft",
+            "readCount": 0,
+            "readTime": 1,
+            "tags": [
+              "JavaScript",
+              "Beginners"
+            ],
+            "createdAt": "2022-11-06T04:57:45.157Z",
+            "updatedAt": "2022-11-06T04:57:45.157Z",
+            "__v": 0
+          },
+          {
+            "_id": "63673b181963893bbe5cbe7c",
+            "title": "NodeJS Tutorial",
+            "description": "NodeJS Basics for Beginners",
+            "author": "David Udo",
+            "authorId": "636732cb74766d2d63f2dde2",
+            "body": "This is the content of the blog.",
+            "state": "draft",
+            "readCount": 0,
+            "readTime": 1,
+            "tags": [
+              "NodeJS",
+              "Beginners"
+            ],
+            "createdAt": "2022-11-06T04:42:00.127Z",
+            "updatedAt": "2022-11-06T04:42:00.130Z",
+            "__v": 0
+          }
+        ],
+        "page": 0
+    }
+    ```
+---
 ### Update Blog
 
 - Route: /orders
 - Method: GET
 - Header:
     - Authorization: Bearer {token}
-- Query params: 
-    - page (default: 1)
-    - per_page (default: 10)
-    - order_by (default: created_at)
-    - order (options: asc | desc, default: desc)
-    - state
-    - created_at
+
 - Responses
 
-Success
-```
-{
-    state: 1,
-    total_price: 900,
-    created_at: Mon Oct 31 2022 08:35:00 GMT+0100,
-    items: [{ name: 'chicken pizza', price: 900, size: 'm', quantity: 1}]
-}
-```
-
+    Success
+    
+    ```json
+    {
+        "status": true,
+        "blog": {
+          "_id": "636735bc74766d2d63f2ddef",
+          "title": "NodeJS Tutorial For Newbies",
+          "description": "JavaScript Basics for Beginners",
+          "author": "David Udo",
+          "authorId": "636732cb74766d2d63f2dde2",
+          "body": "This is the content of the blog.",
+          "state": "draft",
+          "readCount": 1,
+          "readTime": 1,
+          "tags": [
+            "NodeJS",
+            "Beginners",
+            "JavaScript"
+          ],
+          "createdAt": "2022-11-06T04:19:08.945Z",
+          "updatedAt": "2022-11-06T04:19:08.946Z",
+          "__v": 0
+        }
+    }
+    ```
+---
 ### Delete Blog
 
 - Route: /orders
 - Method: GET
 - Header:
     - Authorization: Bearer {token}
-- Query params: 
-    - page (default: 1)
-    - per_page (default: 10)
-    - order_by (default: created_at)
-    - order (options: asc | desc, default: desc)
-    - state
-    - created_at
+
 - Responses
 
-Success
-```
-{
-    state: 1,
-    total_price: 900,
-    created_at: Mon Oct 31 2022 08:35:00 GMT+0100,
-    items: [{ name: 'chicken pizza', price: 900, size: 'm', quantity: 1}]
-}
-```
-
+    Success
+    ```json
+    {
+        "status": true,
+        "blog": {
+          "acknowledged": true,
+          "deletedCount": 1
+        }
+    }
+    ```
 ---
 
 ...
