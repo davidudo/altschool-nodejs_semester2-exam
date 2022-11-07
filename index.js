@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
@@ -16,6 +17,8 @@ const corsOptions = { origin: '*' };
 
 app.use(cors(corsOptions));
 
+app.use(express.static(`${__dirname}/src/public`));
+
 // Middlewares
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -26,7 +29,7 @@ connectToMongoDB();
 
 // Routes
 app.get('/', (req, res) => {
-  res.send('Welcome to Altschool Blog API!');
+  res.send('Altschool Blog API');
 });
 
 app.use('/auth', authRouter);
