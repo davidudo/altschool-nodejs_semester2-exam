@@ -1,4 +1,3 @@
-const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
@@ -17,7 +16,9 @@ const corsOptions = { origin: '*' };
 
 app.use(cors(corsOptions));
 
-app.use(express.static(`${__dirname}/src/public`));
+process.env.PWD = process.cwd();
+
+app.use(express.static(`${process.env.PWD}/src/public/index.html`));
 
 // Middlewares
 app.use(express.urlencoded({ extended: false }));
@@ -27,11 +28,10 @@ app.use(morgan('tiny'));
 // Connect to MongoDB database
 connectToMongoDB();
 
-process.env.PWD = process.cwd();
 
 // Routes
 app.get('/', (req, res) => {
-  res.sendFile(`${process.env.PWD}/src/public/index.html`);
+  res.send('Welcome to Altschool Blog API');
 });
 
 app.use('/auth', authRouter);
