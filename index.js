@@ -18,7 +18,7 @@ app.use(cors(corsOptions));
 
 process.env.PWD = process.cwd();
 
-// app.use(express.static(`${process.env.PWD}/src/public/index.html`));
+app.use(express.static(`${process.env.PWD}/src/public/index.html`));
 
 // Middlewares
 app.use(express.urlencoded({ extended: false }));
@@ -29,9 +29,9 @@ app.use(morgan('tiny'));
 connectToMongoDB();
 
 // Routes
-// app.get('/', (req, res) => {
-//   res.send('Welcome to Altschool Blog API');
-// });
+app.get('/', (req, res) => {
+  res.send('Welcome to Altschool Blog API');
+});
 
 app.use('/auth', authRouter);
 app.use('/user', userRouter);
