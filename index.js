@@ -29,7 +29,7 @@ connectToMongoDB();
 
 // Routes
 app.get('/', (req, res) => {
-  res.send('Altschool Blog API');
+  res.sendFile(`${__dirname}/src/public/index.html`);
 });
 
 app.use('/auth', authRouter);
