@@ -28,15 +28,14 @@ app.use(morgan('tiny'));
 // Connect to MongoDB database
 connectToMongoDB();
 
+app.use('/auth', authRouter);
+app.use('/user', userRouter);
+app.use('/blog', blogRouter);
 
 // Routes
 app.get('/', (req, res) => {
   res.send('Welcome to Altschool Blog API');
 });
-
-app.use('/auth', authRouter);
-app.use('/user', userRouter);
-app.use('/blog', blogRouter);
 
 // 404
 app.use((req, res, next) => {
