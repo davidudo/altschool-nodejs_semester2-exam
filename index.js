@@ -29,9 +29,9 @@ app.use(morgan('tiny'));
 connectToMongoDB();
 
 // Routes
-app.get('/', (req, res) => {
-  res.send('Welcome to Altschool Blog API');
-});
+// app.get('/', (req, res) => {
+//   res.send('Welcome to Altschool Blog API');
+// });
 
 app.use('/auth', authRouter);
 app.use('/user', userRouter);
