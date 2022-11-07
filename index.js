@@ -30,7 +30,7 @@ connectToMongoDB();
 
 // Routes
 app.get('/', (req, res) => {
-  res.send('Welcome to Altschool Blog API');
+  res.sendFile(`${process.env.PWD}/src/public/index.html`);
 });
 
 app.use('/auth', authRouter);
