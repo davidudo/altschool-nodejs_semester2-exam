@@ -18,7 +18,7 @@ app.use(cors(corsOptions));
 
 process.env.PWD = process.cwd();
 
-app.use(express.static(`${process.env.PWD}/src/public/index.html`));
+app.use(express.static(`${process.env.PWD}/src/public`));
 
 // Middlewares
 app.use(express.urlencoded({ extended: false }));
