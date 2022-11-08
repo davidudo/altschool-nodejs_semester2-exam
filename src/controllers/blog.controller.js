@@ -8,7 +8,7 @@ const readTime = require('../utils/readtime.utils');
 async function getAllBlogs(req, res, next) {
   try {
     const limit = 20;
-    let page = 0; // NOTE: pageNumber starts with 0
+    let page = 0;
 
     let blogs = await BlogModel.find()
       .limit(limit)
@@ -31,7 +31,7 @@ async function getAllBlogs(req, res, next) {
       let sortOrder;
 
       if (pageNumber) {
-        page = pageNumber;
+        page = pageNumber - 1;
       }
 
       // Add find parameters to findParams
@@ -74,10 +74,16 @@ async function getAllBlogs(req, res, next) {
         .sort(sortParams);
     }
 
+    const pageDetails = {};
+    const count = await BlogModel.count();
+
+    pageDetails.presentPageNumber = page + 1;
+    pageDetails.totalPage = Math.ceil((count / limit));
+
     return res.status(200).json({
       status: true,
+      pageDetails,
       blogs,
-      page,
     });
   } catch (error) {
     next(error);
@@ -120,8 +126,8 @@ async function getBlogById(req, res, next) {
 
       return res.status(200).json({
         status: true,
-        blogData,
         authorInfo,
+        blogData,
       });
     }
   } catch (error) {

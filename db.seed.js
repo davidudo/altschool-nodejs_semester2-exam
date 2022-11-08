@@ -14,7 +14,7 @@ function randomIntFromInterval(min, max) {
 
 async function seedDB() {
   // Connection URL
-  const MONGODB_URI = 'mongodb+srv://davidudo:deanbolt@cluster0.yrrl4n4.mongodb.net/blogging_api?retryWrites=true&w=majority';
+  const MONGODB_URI = 'mongodb://localhost:27017/blogging_api';
 
   try {
     await mongoose.connect(MONGODB_URI);

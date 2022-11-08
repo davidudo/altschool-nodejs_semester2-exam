@@ -92,7 +92,7 @@ curl \
 -X GET https://altschoolblogapp.herokuapp.com/blog \
 -H 'authorization: your_token' \
 -F 'state=published' \
--F 'pageNumber=0' \
+-F 'pageNumber=1' \
 -F 'orderBy=readCount,createdAt'
                 </code></pre>
                 <p>
@@ -103,6 +103,10 @@ curl \
                 <pre><code class="json">
 {
     "status": true,
+    "pageDetails": {
+        "presentPageNumber": 1,
+        "totalPage": 3
+    },
     "blogs": [
         {
             "_id": "6367e66aa6126ca078e7bd14",
@@ -195,7 +199,6 @@ curl \
             "__v": 0
         }
     ],
-    "page": 0
     }
                 </code></pre>
                 <h4>QUERY PARAMETERS</h4>
@@ -211,7 +214,7 @@ curl \
                         <tr>
                             <td>pageNumber</td>
                             <td>Integer</td>
-                            <td>(optional - default: 0) page number of the list of blogs. Presently, the page number starts with 0.</td>
+                            <td>(optional - default: 1) page number of the list of blogs. Presently, the page number starts from 1.</td>
                         </tr>
                         <tr>
                             <td>state</td>

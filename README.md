@@ -282,6 +282,12 @@ This is an API for a blogging app. This was built as my NodeJS second semester e
     ```json
     {
         "status": true,
+        "authorInfo": {
+          "id": "636732cb74766d2d63f2dde2",
+          "firstName": "David",
+          "lastName": "Udo",
+          "email": "udodavid46.ud@gmail.com"
+        },
         "blogData": {
           "_id": "636735bc74766d2d63f2ddef",
           "title": "JavaScript Tutorial",
@@ -299,12 +305,6 @@ This is an API for a blogging app. This was built as my NodeJS second semester e
           "createdAt": "2022-11-06T04:19:08.945Z",
           "updatedAt": "2022-11-06T04:19:08.946Z",
           "__v": 0
-        },
-        "authorInfo": {
-          "id": "636732cb74766d2d63f2dde2",
-          "firstName": "David",
-          "lastName": "Udo",
-          "email": "udodavid46.ud@gmail.com"
         }
     }
     ```
@@ -314,7 +314,7 @@ This is an API for a blogging app. This was built as my NodeJS second semester e
 - Route: /blog
 - Method: GET
 - Query params: 
-    - pageNumber (default: 0)
+    - pageNumber (default: 1)
     - state (options: draft | published)
     - author
     - authorId
@@ -329,6 +329,10 @@ This is an API for a blogging app. This was built as my NodeJS second semester e
     ```json
     {
         "status": true,
+        "pageDetails": {
+          "presentPageNumber": 1,
+          "totalPage": 1
+        },
         "blogs": [
           {
             "_id": "63673ec91963893bbe5cbe89",
@@ -367,7 +371,6 @@ This is an API for a blogging app. This was built as my NodeJS second semester e
             "__v": 0
           }
         ],
-        "page": 0
     }
     ```
 ---
