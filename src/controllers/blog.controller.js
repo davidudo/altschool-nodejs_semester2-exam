@@ -105,16 +105,16 @@ async function getBlogById(req, res, next) {
       }
 
       let { readCount } = blog;
+      const { authorId } = blog;
+
       readCount += 1;
 
       const updateDetails = { readCount };
 
-      const blogData = await BlogModel.findOneAndUpdate(id, updateDetails, {
+      const blogData = await BlogModel.findByIdAndUpdate(id, updateDetails, {
         new: true,
         runValidators: true,
       });
-
-      const { authorId } = blog;
 
       const author = await UserModel.findById(authorId);
       const authorInfo = {};
@@ -169,7 +169,7 @@ async function updateBlog(req, res, next) {
 
       const blogId = { _id: id };
 
-      const blog = await BlogModel.findOneAndUpdate(blogId, updateDetails, {
+      const blog = await BlogModel.findByIdAndUpdate(blogId, updateDetails, {
         new: true,
         runValidators: true,
       });
