@@ -18,7 +18,7 @@ async function updateUser(req, res, next) {
         updateDetails.password = hash;
       }
 
-      const user = await UserModel.findOneAndUpdate(userId, updateDetails, {
+      const user = await UserModel.findByIdAndUpdate(userId, updateDetails, {
         new: true,
       });
 
