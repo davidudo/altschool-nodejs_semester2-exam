@@ -83,7 +83,7 @@ This is an API for a blogging app. This was built as my NodeJS second semester e
 
 ### User
 |  field     |  data_type |  constraints  |
-|   ---      |  ---       |  ---          |
+|---         |---         |---          |
 |  id        |  objectid  |  required     |
 |  firstName |  string    |  required     |
 |  lastName  |  string    |  required     |
@@ -95,7 +95,7 @@ This is an API for a blogging app. This was built as my NodeJS second semester e
 
 ### Blog
 |  field       |  data_type |  constraints           |
-|  ---         |  ---       |  ---                   |
+|---           |---         |---                     |
 |  id          |  objectid  |  required              |
 |  title       |  string    |  unique, required      |
 |  description | string     |  optional              |
