@@ -53,16 +53,35 @@
                 <li class="scroll-to-link active" data-target="content-get-started">
                     <a>Get Started</a>
                 </li>
-                <li class="scroll-to-link" data-target="content-get-characters">
+                <li class="scroll-to-link" data-target="content-signup-user">
+                    <a>Sign Up User</a>
+                </li>
+                <li class="scroll-to-link" data-target="content-login-user">
+                    <a>Login User</a>
+                </li>
+                <li class="scroll-to-link" data-target="content-get-blogs">
                     <a>Get Blogs</a>
+                </li>
+                <li class="scroll-to-link" data-target="content-get-blog">
+                    <a>Get Blog</a>
+                </li>
+                <li class="scroll-to-link" data-target="content-add-blog">
+                    <a>Add Blog</a>
+                </li>
+                <li class="scroll-to-link" data-target="content-update-blog">
+                    <a>Update Blog</a>
+                </li>
+                <li class="scroll-to-link" data-target="content-delete-blog">
+                    <a>Delete Blog</a>
+                </li>
+                <li class="scroll-to-link" data-target="content-update-user">
+                    <a>Update User</a>
+                </li>
+                <li class="scroll-to-link" data-target="content-delete-user">
+                    <a>Delete User</a>
                 </li>
                 <li class="scroll-to-link" data-target="content-errors">
                     <a>Errors</a>
-                </li>
-                <li>
-                  <a href="blog-frontend-demo/index.html">
-                    Blog Website
-                  </a>
                 </li>
             </ul>
         </div>
@@ -70,42 +89,113 @@
     <div class="content-page">
         <div class="content-code"></div>
         <div class="content">
+
+            <!-- Get Started Section -->
+
             <div class="overflow-hidden content-section" id="content-get-started">
                 <h1>Get started</h1>
                 <pre>
-    API Endpoint
+API Endpoint
 
-    https://altschoolblogapp.herokuapp.com/
-                </pre>
+https://altschoolblogapp.herokuapp.com/
+            </pre>
+            <p>
+                The Altschool Blog API provides fake blog data that can be consumed from any frontend application.
+                The GET blogs and blog routes can be accessed by any user without authetication, but in order to
+                create a blog, update a blog, and delete a blog, you need to be autheticated to perform such
+                operations. Note that when you signup, you can update your details and delete your account. To get more information about the API click the <code class="higlighted">Git Icon</code> on the nav bar.
+            </p>
+            <p>
+                To use some routes in this API, you need use the signup route to register, then use the login route
+                to get a <strong>token</strong> which needs to be placed in the authorization header next to a
+                Bearer string before you can access the protected routes.
+            </p>
+        </div>
+
+            <!-- Signup User Section -->
+
+            <div class="overflow-hidden content-section" id="content-update-user">
+                <h2>sign up user</h2>
+                <pre><code class="bash">
+# Here is a curl example
+curl \
+-X POST https://altschoolblogapp.herokuapp.com/auth/signup \
+-J {
+        "firstName": "David",
+        "lastName": "Udo",
+        "email": "davidudo@gmail.com",
+        "password": "davidudo"
+    } \
+
+                </code></pre>
                 <p>
-                    The Altschool Blog API provides fake blog data that can be consumed from any frontend application.
-                    The GET blogs and blog routes can be accessed by any user without authetication, but in order to
-                    create a blog, update a blog, and delete a blog, you need to be autheticated to perform such
-                    operations. Note that when you signup, you can update your details and delete your account. To get more information about the API click the <code class="higlighted">Git Icon</code> on the nav bar.
+                    To signup a user you need to make a POST call to the following url :<br>
+                    <code class="higlighted break-word">https://altschoolblogapp.herokuapp.com/auth/signup</code>
                 </p>
-                <p>
-                    To use some routes in this API, you need use the signup route to register, then use the login route
-                    to get a <strong>token</strong> which needs to be placed in the authorization header next to a
-                    Bearer string before you can access the protected routes.
-                </p>
+                <br>
+                <pre><code class="json">
+# Response
+{
+    "message": "Signup successful",
+    "user": {
+        "firstName": "David",
+        "lastName": "Udo",
+        "email": "davidudo@gmail.com",
+        "password": "$2b$10$FWSOaJDZ4uObb8Wd/3Cj..Qm5EL4agulp7R244PWAfp347qBVRPmK",
+        "createdAt": "2022-11-18T12:08:13.192Z",
+        "_id": "637775adf9ae9766da5c0e78",
+        "__v": 0
+    }
+}
+            </code></pre>
             </div>
-            <div class="overflow-hidden content-section" id="content-get-characters">
+
+            <!-- Login User Section -->
+
+            <div class="overflow-hidden content-section" id="content-update-user">
+                <h2>login user</h2>
+                <pre><code class="bash">
+# Here is a curl example
+curl \
+-X POST https://altschoolblogapp.herokuapp.com/auth/login \
+-J {
+        "email": "davidudo@gmail.com",
+        "password": "davidudo"
+    } \
+
+                </code></pre>
+                <p>
+                    To login a user you need to make a POST call to the following url :<br>
+                    <code class="higlighted break-word">https://altschoolblogapp.herokuapp.com/auth/login</code>
+                </p>
+                <br>
+                <pre><code class="json">
+# Response
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYzNzYyNTMwZWIxYzg3MWVlNzljMWIxNSIsImZpcnN0TmFtZSI6IkRhdmlkIiwibGFzdE5hbWUiOiJVZG8iLCJlbWFpbCI6InVkb2RhdmlkNDYudWRAZ21haWwuY29tIn0sImlhdCI6MTY2ODc2OTkyNywiZXhwIjoxNjY4ODU2MzI3fQ.S4c_aaPIHjTSKxAB2JmJdwYKPVDNQkJyt0DHhFmX8n4"
+}
+            </code></pre>
+            </div>
+
+            <!-- Get Blogs Section -->
+
+            <div class="overflow-hidden content-section" id="content-get-blogs">
                 <h2>get blogs</h2>
                 <pre><code class="bash">
 # Here is a curl example
 curl \
 -X GET https://altschoolblogapp.herokuapp.com/blog \
 -H 'authorization: your_token' \
--F 'state=published' \
--F 'pageNumber=1' \
--F 'orderBy=readCount,createdAt'
+-Q 'pageNumber=1' \
+-Q 'orderBy=readCount,createdAt'
                 </code></pre>
                 <p>
                     To get all blog posts you need to make a GET call to the following url :<br>
-                    <code class="higlighted break-word">https://altschoolblogapp.herokuapp.com/</code>
+                    <code class="higlighted break-word">https://altschoolblogapp.herokuapp.com/blog</code>
                 </p>
                 <br>
                 <pre><code class="json">
+# Response
 {
     "status": true,
     "pageDetails": {
@@ -270,6 +360,243 @@ curl \
                     </tbody>
                 </table>
             </div>
+
+            <!-- Get Blog Section -->
+
+            <div class="overflow-hidden content-section" id="content-get-blog">
+                <h2>get blog</h2>
+                <pre><code class="bash">
+# Here is a curl example
+curl \
+-X GET https://altschoolblogapp.herokuapp.com/blog/636a37b4ce574a26fe083c40 \
+                </code></pre>
+                <p>
+                    To get a specific blog post by it's id you need to make a GET call to the following url :<br>
+                    <code class="higlighted break-word">https://altschoolblogapp.herokuapp.com/blog/:id</code>
+                </p>
+                <br>
+                <pre><code class="json">
+# Response
+{
+    "status": true,
+    "authorInfo": {
+        "id": "636a37b4ce574a26fe083c30",
+        "firstName": "Jamel",
+        "lastName": "Konopelski",
+        "email": "Jamel.Konopelski60@hotmail.com"
+    },
+    "blogData": {
+        "_id": "636a37b4ce574a26fe083c40",
+        "title": "Molestiae ratione nisi animi eaque.",
+        "description": "Aut minima inventore illum atque iusto. Exercitationem voluptas iste explicabo ullam maxime. Expedita magni veniam vel perspiciatis vel vel inventore debitis sint.",
+        "author": "Jamel Konopelski",
+        "authorId": "636a37b4ce574a26fe083c30",
+        "body": "Distinctio tenetur tenetur consectetur accusantium hic inventore ipsum quae. Deserunt excepturi earum sint mollitia facere suscipit ipsum. Accusantium at dolor voluptates tempora occaecati tempora. Nesciunt corrupti cupiditate libero soluta voluptatum qui. Sequi facilis porro officia ipsa ea velit. Nobis vero ipsam veniam eaque. Explicabo nemo deserunt commodi expedita quaerat excepturi error. Tempora adipisci incidunt omnis repudiandae a. Facere aut quaerat voluptatum quasi recusandae molestiae a. Architecto dolore error aliquam sint dolores. Fugit error eveniet amet similique. Est expedita sapiente possimus. Temporibus veritatis molestiae ratione corrupti omnis. Esse fugit mollitia veniam incidunt illo tenetur. Blanditiis odit corporis labore eligendi nisi facere repellendus. Recusandae vel exercitationem cum culpa voluptatem illo quam debitis. Id officiis incidunt odio quisquam quia quae rem. Vel nesciunt animi vitae sit perferendis odit saepe. Explicabo repellat temporibus nihil ut. Laboriosam ea dicta porro doloremque neque quas nostrum rem.",
+        "state": "draft",
+        "readCount": 4,
+        "readTime": 1,
+        "tags": [
+        "Funk"
+        ],
+        "createdAt": "2022-03-31T05:00:44.109Z",
+        "updatedAt": "2022-03-31T05:00:44.109Z",
+        "__v": 0
+    }
+}
+            </code></pre>
+            </div>
+
+
+            <!-- Add Blog Section -->
+
+            <div class="overflow-hidden content-section" id="content-add-blog">
+                <h2>add blog</h2>
+                <pre><code class="bash">
+# Here is a curl example
+curl \
+-X POST https://altschoolblogapp.herokuapp.com/blog \
+-J {
+        "title": "NodeJS Tutorials For Beginners",
+        "description": "Basics of NodeJS for Newbies",
+        "body": "As with so many technologies, Node.js has its champions and its detractors. But there's no denying that it is widely used by some powerhouse websites, including Uber, LinkedIn, and PayPal—which makes it a powerhouse no matter which side of the debate you're on. And popular technologies used by big brands are always something to pay attention to when you're making career choices. So what is Node.js? Node.js is an open source cross-platform runtime environment written in JavaScript. It is built on Chrome's V8 JavaScript engine, which parses and executes the JavaScript code.",
+        "tags": ["JavaScript", "NodeJS", "Backend", "API"]
+    } \
+                </code></pre>
+                <p>
+                    To add or create a blog post you need to make a POST call to the following url :<br>
+                    <code class="higlighted break-word">https://altschoolblogapp.herokuapp.com/blog</code>
+                </p>
+                <br>
+                <pre><code class="json">
+# Response
+{
+    "status": true,
+    "blogData": {
+        "title": "NodeJS Tutorials For Beginners",
+        "description": "Basics of NodeJS for Newbies",
+        "author": "David Udo",
+        "authorId": "63762530eb1c871ee79c1b15",
+        "body": "As with so many technologies, Node.js has its champions and its detractors. But there's no denying that it is widely used by some powerhouse websites, including Uber, LinkedIn, and PayPal—which makes it a powerhouse no matter which side of the debate you're on. And popular technologies used by big brands are always something to pay attention to when you're making career choices. So what is Node.js? Node.js is an open source cross-platform runtime environment written in JavaScript. It is built on Chrome's V8 JavaScript engine, which parses and executes the JavaScript code.",
+        "state": "draft",
+        "readCount": 0,
+        "readTime": 1,
+        "tags": [
+            "JavaScript",
+            "NodeJS",
+            "Backend",
+            "API"
+        ],
+        "createdAt": "2022-11-18T11:14:30.242Z",
+        "updatedAt": "2022-11-18T11:14:30.242Z",
+        "_id": "63776916f9ae9766da5c0e6e",
+        "__v": 0
+    }
+}
+            </code></pre>
+            </div>
+
+            <!-- Update Blog Section -->
+
+            <div class="overflow-hidden content-section" id="content-update-blog">
+                <h2>update blog</h2>
+                <pre><code class="bash">
+# Here is a curl example
+curl \
+-X PUT https://altschoolblogapp.herokuapp.com/blog/63776916f9ae9766da5c0e6e \
+-J {
+        "title": "NodeJS Tutorials For Total Beginners",
+        "body": "As with so many technologies, Node.js has its champions and its detractors. But there's no denying that it is widely used by some powerhouse websites, including Uber, LinkedIn, and PayPal—which makes it a powerhouse no matter which side of the debate you're on. And popular technologies used by big brands are always something to pay attention to when you're making career choices. So what is Node.js?",
+        "state": "published",
+        "tags": ["JavaScript", "NodeJS", "Backend", "API"]
+    } \
+
+                </code></pre>
+                <p>
+                    To update a blog post you need to make a PUT call to the following url :<br>
+                    <code class="higlighted break-word">https://altschoolblogapp.herokuapp.com/blog/:id</code>
+                </p>
+                <br>
+                <pre><code class="json">
+# Response
+{
+    "status": true,
+    "blog": {
+        "_id": "63776916f9ae9766da5c0e6e",
+        "title": "NodeJS Tutorials For Total Beginners",
+        "description": "Basics of NodeJS for Newbies",
+        "author": "David Udo",
+        "authorId": "63762530eb1c871ee79c1b15",
+        "body": "As with so many technologies, Node.js has its champions and its detractors. But there's no denying that it is widely used by some powerhouse websites, including Uber, LinkedIn, and PayPal—which makes it a powerhouse no matter which side of the debate you're on. And popular technologies used by big brands are always something to pay attention to when you're making career choices. So what is Node.js?",
+        "state": "published",
+        "readCount": 0,
+        "readTime": 1,
+        "tags": [
+            "JavaScript",
+            "NodeJS",
+            "Backend",
+            "API"
+        ],
+        "createdAt": "2022-11-18T11:14:30.242Z",
+        "updatedAt": "2022-11-18T11:14:30.242Z",
+        "__v": 0
+    }
+}
+            </code></pre>
+            </div>
+
+            <!-- Delete Blog Section -->
+
+            <div class="overflow-hidden content-section" id="content-delete-blog">
+                <h2>delete blog</h2>
+                <pre><code class="bash">
+# Here is a curl example
+curl \
+-X DELETE https://altschoolblogapp.herokuapp.com/blog/63776916f9ae9766da5c0e6e \
+
+                </code></pre>
+                <p>
+                    To delete a blog post you need to make a DELETE call to the following url :<br>
+                    <code class="higlighted break-word">https://altschoolblogapp.herokuapp.com/blog/:id</code>
+                </p>
+                <br>
+                <pre><code class="json">
+# Response
+{
+    "status": true,
+    "blog": {
+        "acknowledged": true,
+        "deletedCount": 1
+    }
+}
+            </code></pre>
+            </div>
+
+            <!-- Update User Section -->
+
+            <div class="overflow-hidden content-section" id="content-update-user">
+                <h2>update user</h2>
+                <pre><code class="bash">
+# Here is a curl example
+curl \
+-X PUT https://altschoolblogapp.herokuapp.com/user/63776916f9ae9766da5c0e6e \
+-J {
+        "lastName": "Johnson",
+        "email": "udodavid46@gmail.com",
+        "password": "davidudo"
+    } \
+
+                </code></pre>
+                <p>
+                    To update a user account you need to make a PUT call to the following url :<br>
+                    <code class="higlighted break-word">https://altschoolblogapp.herokuapp.com/user/:id</code>
+                </p>
+                <br>
+                <pre><code class="json">
+# Response
+{
+    "status": true,
+    "user": {
+        "_id": "637770aef9ae9766da5c0e74",
+        "firstName": "David",
+        "lastName": "Johnson",
+        "email": "udodavid46@gmail.com",
+        "password": "$2b$10$loxtqnENpWpaytnRnyh7euA6.efkbQ5WI7a1K1MD6v2uDz1rhHWyC",
+        "createdAt": "2022-11-18T11:46:54.728Z",
+        "__v": 0
+    }
+}
+            </code></pre>
+            </div>
+
+            <!-- Delete User Section -->
+
+            <div class="overflow-hidden content-section" id="content-delete-user">
+                <h2>delete user</h2>
+                <pre><code class="bash">
+# Here is a curl example
+curl \
+-X DELETE https://altschoolblogapp.herokuapp.com/user/63776916f9ae9766da5c0e6e \
+
+                </code></pre>
+                <p>
+                    To delete a user account you need to make a DELETE call to the following url :<br>
+                    <code class="higlighted break-word">https://altschoolblogapp.herokuapp.com/user/:id</code>
+                </p>
+                <br>
+                <pre><code class="json">
+# Response
+{
+    "status": true,
+    "user": {
+      "acknowledged": true,
+      "deletedCount": 1
+    }
+}
+            </code></pre>
+            </div>
+
+            <!-- Errors -->
+
             <div class="overflow-hidden content-section" id="content-errors">
                 <h2>Errors</h2>
                 <p>
