@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Altschool Blog - Create Blog</title>
+    <link rel="stylesheet" href="../assets/css/index.css">
+    <link rel="stylesheet" href="../assets/css/form.css">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <img src="../assets/images/altschool-light.svg" alt="Logo" class="altschool-logo">
+
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="auth-form">
+        <div class="container">
+            <form action="post">
+                <h2>Create Blog</h2>
+
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" name="title" id="title">
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <input type="text" name="description" id="description">
+                </div>
+
+                <div class="form-group">
+                    <label for="body">Body</label>
+                    <textarea type="text" name="body" id="body"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="tags">Tags</label>
+                    <input type="text" name="tags" id="tags">
+                </div>
+
+                <button type="submit">Publish</button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>
