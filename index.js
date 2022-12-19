@@ -1,6 +1,9 @@
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
+const helmet = require('helmet');
+
+
 const connectToMongoDB = require('./src/configs/db.config');
 const authRouter = require('./src/routes/auth.route');
 const userRouter = require('./src/routes/user.route');
@@ -13,11 +16,12 @@ const { PORT } = process.env;
 const app = express();
 
 const corsOptions = { origin: '*' };
-
 app.use(cors(corsOptions));
 
-process.env.PWD = process.cwd();
+app.use(helmet());
+app.disable('x-powered-by');
 
+process.env.PWD = process.cwd();
 app.use(express.static(`${process.env.PWD}/src/public`));
 
 // Middlewares
@@ -54,8 +58,8 @@ app.use((err, req, res, next) => {
   next();
 });
 
-app.listen(PORT, () => {
+/*app.listen(PORT, () => {
   console.log('Server listening on port, ', PORT);
-});
+});*/
 
 module.exports = app;

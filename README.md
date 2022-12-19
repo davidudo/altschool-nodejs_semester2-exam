@@ -75,7 +75,7 @@ This is an API for a blogging app. This was built as my NodeJS second semester e
 ---
 
 ## Base URL
-- [https://altschoolblogapp.herokuapp.com](https://altschoolblogapp.herokuapp.com/)
+- [https://altschoolblog.cyclic.app](https://altschoolblogapp.herokuapp.com/)
 
 ---
 
