@@ -3,11 +3,12 @@ const morgan = require('morgan');
 const cors = require('cors');
 const helmet = require('helmet');
 
-
-const connectToMongoDB = require('./src/configs/db.config');
 const authRouter = require('./src/routes/auth.route');
 const userRouter = require('./src/routes/user.route');
 const blogRouter = require('./src/routes/blog.route');
+
+const connectToMongoDB = require('./src/configs/db.config');
+const limiter = require('./src/middlewares/rateLimiter.middleware');
 require('dotenv').config();
 require('./src/middlewares/auth.middleware');
 
@@ -20,6 +21,7 @@ app.use(cors(corsOptions));
 
 app.use(helmet());
 app.disable('x-powered-by');
+app.use(limiter);
 
 process.env.PWD = process.cwd();
 app.use(express.static(`${process.env.PWD}/src/public`));
