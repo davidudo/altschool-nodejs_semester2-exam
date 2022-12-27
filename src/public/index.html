@@ -97,7 +97,7 @@
                 <pre>
 API Endpoint
 
-https://altschoolblogapp.herokuapp.com/
+https://altschoolblogapp.cyclic.app/
             </pre>
             <p>
                 The Altschool Blog API provides fake blog data that can be consumed from any frontend application.
@@ -119,7 +119,7 @@ https://altschoolblogapp.herokuapp.com/
                 <pre><code class="bash">
 # Here is a curl example
 curl \
--X POST https://altschoolblogapp.herokuapp.com/auth/signup \
+-X POST https://altschoolblogapp.cyclic.app/auth/signup \
 -J {
         "firstName": "David",
         "lastName": "Udo",
@@ -130,7 +130,7 @@ curl \
                 </code></pre>
                 <p>
                     To signup a user you need to make a POST call to the following url :<br>
-                    <code class="higlighted break-word">https://altschoolblogapp.herokuapp.com/auth/signup</code>
+                    <code class="higlighted break-word">https://altschoolblogapp.cyclic.app/auth/signup</code>
                 </p>
                 <br>
                 <pre><code class="json">
@@ -157,7 +157,7 @@ curl \
                 <pre><code class="bash">
 # Here is a curl example
 curl \
--X POST https://altschoolblogapp.herokuapp.com/auth/login \
+-X POST https://altschoolblogapp.cyclic.app/auth/login \
 -J {
         "email": "davidudo@gmail.com",
         "password": "davidudo"
@@ -166,7 +166,7 @@ curl \
                 </code></pre>
                 <p>
                     To login a user you need to make a POST call to the following url :<br>
-                    <code class="higlighted break-word">https://altschoolblogapp.herokuapp.com/auth/login</code>
+                    <code class="higlighted break-word">https://altschoolblogapp.cyclic.app/auth/login</code>
                 </p>
                 <br>
                 <pre><code class="json">
@@ -184,14 +184,14 @@ curl \
                 <pre><code class="bash">
 # Here is a curl example
 curl \
--X GET https://altschoolblogapp.herokuapp.com/blog \
+-X GET https://altschoolblogapp.cyclic.app/blog \
 -H 'authorization: your_token' \
 -Q 'pageNumber=1' \
 -Q 'orderBy=readCount,createdAt'
                 </code></pre>
                 <p>
                     To get all blog posts you need to make a GET call to the following url :<br>
-                    <code class="higlighted break-word">https://altschoolblogapp.herokuapp.com/blog</code>
+                    <code class="higlighted break-word">https://altschoolblogapp.cyclic.app/blog</code>
                 </p>
                 <br>
                 <pre><code class="json">
@@ -368,11 +368,11 @@ curl \
                 <pre><code class="bash">
 # Here is a curl example
 curl \
--X GET https://altschoolblogapp.herokuapp.com/blog/636a37b4ce574a26fe083c40 \
+-X GET https://altschoolblogapp.cyclic.app/blog/636a37b4ce574a26fe083c40 \
                 </code></pre>
                 <p>
                     To get a specific blog post by it's id you need to make a GET call to the following url :<br>
-                    <code class="higlighted break-word">https://altschoolblogapp.herokuapp.com/blog/:id</code>
+                    <code class="higlighted break-word">https://altschoolblogapp.cyclic.app/blog/:id</code>
                 </p>
                 <br>
                 <pre><code class="json">
@@ -414,7 +414,7 @@ curl \
                 <pre><code class="bash">
 # Here is a curl example
 curl \
--X POST https://altschoolblogapp.herokuapp.com/blog \
+-X POST https://altschoolblogapp.cyclic.app/blog \
 -J {
         "title": "NodeJS Tutorials For Beginners",
         "description": "Basics of NodeJS for Newbies",
@@ -424,7 +424,7 @@ curl \
                 </code></pre>
                 <p>
                     To add or create a blog post you need to make a POST call to the following url :<br>
-                    <code class="higlighted break-word">https://altschoolblogapp.herokuapp.com/blog</code>
+                    <code class="higlighted break-word">https://altschoolblogapp.cyclic.app/blog</code>
                 </p>
                 <br>
                 <pre><code class="json">
@@ -462,7 +462,7 @@ curl \
                 <pre><code class="bash">
 # Here is a curl example
 curl \
--X PUT https://altschoolblogapp.herokuapp.com/blog/63776916f9ae9766da5c0e6e \
+-X PUT https://altschoolblogapp.cyclic.app/blog/63776916f9ae9766da5c0e6e \
 -J {
         "title": "NodeJS Tutorials For Total Beginners",
         "body": "As with so many technologies, Node.js has its champions and its detractors. But there's no denying that it is widely used by some powerhouse websites, including Uber, LinkedIn, and PayPal—which makes it a powerhouse no matter which side of the debate you're on. And popular technologies used by big brands are always something to pay attention to when you're making career choices. So what is Node.js?",
@@ -473,7 +473,7 @@ curl \
                 </code></pre>
                 <p>
                     To update a blog post you need to make a PUT call to the following url :<br>
-                    <code class="higlighted break-word">https://altschoolblogapp.herokuapp.com/blog/:id</code>
+                    <code class="higlighted break-word">https://altschoolblogapp.cyclic.app/blog/:id</code>
                 </p>
                 <br>
                 <pre><code class="json">
@@ -511,12 +511,12 @@ curl \
                 <pre><code class="bash">
 # Here is a curl example
 curl \
--X DELETE https://altschoolblogapp.herokuapp.com/blog/63776916f9ae9766da5c0e6e \
+-X DELETE https://altschoolblogapp.cyclic.app/blog/63776916f9ae9766da5c0e6e \
 
                 </code></pre>
                 <p>
                     To delete a blog post you need to make a DELETE call to the following url :<br>
-                    <code class="higlighted break-word">https://altschoolblogapp.herokuapp.com/blog/:id</code>
+                    <code class="higlighted break-word">https://altschoolblogapp.cyclic.app/blog/:id</code>
                 </p>
                 <br>
                 <pre><code class="json">
@@ -538,7 +538,7 @@ curl \
                 <pre><code class="bash">
 # Here is a curl example
 curl \
--X PUT https://altschoolblogapp.herokuapp.com/user/63776916f9ae9766da5c0e6e \
+-X PUT https://altschoolblogapp.cyclic.app/user/63776916f9ae9766da5c0e6e \
 -J {
         "lastName": "Johnson",
         "email": "udodavid46@gmail.com",
@@ -548,7 +548,7 @@ curl \
                 </code></pre>
                 <p>
                     To update a user account you need to make a PUT call to the following url :<br>
-                    <code class="higlighted break-word">https://altschoolblogapp.herokuapp.com/user/:id</code>
+                    <code class="higlighted break-word">https://altschoolblogapp.cyclic.app/user/:id</code>
                 </p>
                 <br>
                 <pre><code class="json">
@@ -575,12 +575,12 @@ curl \
                 <pre><code class="bash">
 # Here is a curl example
 curl \
--X DELETE https://altschoolblogapp.herokuapp.com/user/63776916f9ae9766da5c0e6e \
+-X DELETE https://altschoolblogapp.cyclic.app/user/63776916f9ae9766da5c0e6e \
 
                 </code></pre>
                 <p>
                     To delete a user account you need to make a DELETE call to the following url :<br>
-                    <code class="higlighted break-word">https://altschoolblogapp.herokuapp.com/user/:id</code>
+                    <code class="higlighted break-word">https://altschoolblogapp.cyclic.app/user/:id</code>
                 </p>
                 <br>
                 <pre><code class="json">
